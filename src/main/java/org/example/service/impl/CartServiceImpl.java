@@ -29,7 +29,6 @@ public class CartServiceImpl implements CartService{
 
         @Override
         public void addItemToCard(CartItemDTO cartItem) {
-            ItemDTO itemInStock = restTemplate.getForObject("http://INVENTORY-SERVICE/api/v1/items/{code}", ItemDTO.class, cartItem.getItemCode());
             Optional<CartItem> optCartItem = cartItemRepository.findCartItemByItemCodeAndUsername(cartItem.getItemCode(), cartItem.getUsername());
 
             if (optCartItem.isEmpty()){
